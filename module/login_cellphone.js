@@ -14,8 +14,15 @@ module.exports = async (query, request) => {
     'POST', `https://music.163.com/weapi/login/cellphone`, data,
     {crypto: 'weapi', ua: 'pc', cookie: query.cookie, proxy: query.proxy}
   )
- 
+
   if (result.body.code === 200) {
+    global.cookie = {}
+    result.cookie.forEach((c) => {
+      var x = c.split('; ')[0]
+      var y = x.split('=')
+      global.cookie[y[0]] = y[1]
+    })
+
     result = {
       status: 200,
       body: {
