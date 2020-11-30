@@ -18,6 +18,87 @@
 
 [sqaiyan/netmusic-node](https://github.com/sqaiyan/netmusic-node)
 
+
+## 环境要求
+
+需要 NodeJS 8.12+ 环境
+
+## 安装
+
+```shell
+
+$ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git 
+
+$ npm install
+```
+
+或者
+```shell
+$ git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
+
+$ npm install
+```
+
+## 运行
+
+```shell
+$ node app.js
+```
+
+服务器启动默认端口为 3000,若不想使用 3000 端口,可使用以下命令: Mac/Linux
+
+```shell
+$ PORT=4000 node app.js
+```
+
+windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
+
+```shell
+$ set PORT=4000 && node app.js
+```
+
+## 可以在Node.js调用
+v3.31.0后支持Node.js调用,导入的方法为`module`内的文件名,返回内容包含`status`和`body`,`status`为状态码,`body`为请求返回内容,参考`module_example` 文件夹下的 `test.js`
+```js
+const { login_cellphone, user_cloud } = require('NeteaseCloudMusicApi')
+async function main() {
+  try {
+    const result = await login_cellphone({
+      phone: '手机号',
+      password: '密码'
+    })
+    console.log(result)
+    const result2 = await user_cloud({
+      cookie: result.body.cookie // 凭证
+    })
+    console.log(result2.body)
+      
+  } catch (error) {
+    console.log(error)
+  }
+}
+main()
+```
+
+## 支持 TypeScript
+```ts
+// test.ts
+import { banner } from 'NeteaseCloudMusicApi'
+banner({ type:0 }).then(res=>{
+  console.log(res)
+})
+```
+
+
+## 使用文档
+
+[文档地址](https://binaryify.github.io/NeteaseCloudMusicApi) 
+
+[文档地址2](https://neteasecloudmusicapi.vercel.app)
+
+![文档](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/docs.png)
+
+
 ## 功能特性
 1. 登录
 2. 刷新登录
@@ -172,41 +253,50 @@
 151. 获取推荐视频
 152. 获取视频分类列表 
 153. 获取全部视频列表接口
-
-## 环境要求
-
-需要 NodeJS 8.12+ 环境
-
-## 安装
-
-```shell
-$ git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
-$ npm install
-```
-
-## 运行
-
-```shell
-$ node app.js
-```
-
-服务器启动默认端口为 3000,若不想使用 3000 端口,可使用以下命令: Mac/Linux
-
-```shell
-$ PORT=4000 node app.js
-```
-
-windows 下使用 git-bash 或者 cmder 等终端执行以下命令:
-
-```shell
-$ set PORT=4000 && node app.js
-```
-
-## 使用文档
-
-[文档地址](https://binaryify.github.io/NeteaseCloudMusicApi)
-
-![文档](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/docs.png)
+154. 获取历史日推可用日期列表
+155. 获取历史日推详细数据
+156. 国家编码列表
+157. 首页-发现
+158. 首页-发现-圆形图标入口列表
+159. 数字专辑-全部新碟
+160. 数字专辑-热门新碟
+161. 数字专辑&数字单曲-榜单
+162. 数字专辑-语种风格馆
+163. 数字专辑详情
+164. 更新头像
+165. 歌单封面上传
+166. 楼层评论
+167. 歌手全部歌曲
+168. 精品歌单标签列表
+169. 用户等级信息
+170. 电台个性推荐
+171. 用户绑定信息
+172. 用户绑定手机
+173. 新版评论
+174. 点赞过的视频
+175. 收藏视频到视频歌单
+176. 删除视频歌单里的视频
+177. 最近播放的视频
+178. 音乐日历
+179. 电台订阅者列表
+180. 云贝签到信息
+181. 云贝签到
+182. 云贝所有任务
+183. 云贝todo任务
+184. 云贝今日签到信息
+185. 云贝完成任务
+186. 云贝收入
+187. 云贝支出
+188. 云贝账户信息
+189. 账号信息
+190. 最近联系人
+191. 私信音乐
+192. 抱一抱评论
+193. 评论抱一抱列表
+194. 收藏的专栏
+195. 关注歌手新歌
+196. 关注歌手新MV
+197. 歌手详情
 
 ## 更新日志
 
